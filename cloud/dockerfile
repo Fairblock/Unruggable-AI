@@ -1,0 +1,33 @@
+# ------------------------------------------------------------------
+# 1) Build Stage
+# ------------------------------------------------------------------
+    FROM golang:1.22.4-alpine AS builder
+
+    # Create and set working directory
+    WORKDIR /app
+    
+    # Copy go.mod and go.sum first for efficient caching
+    COPY go.mod go.sum ./
+    RUN go mod download
+    
+    # Copy the rest of the source code
+    COPY . .
+    
+    # (Optional) If you want to ensure everything is tidy inside Docker:
+    # RUN go mod tidy
+    
+    # Build the binary
+    RUN go build -o /app/myapp main.go
+    
+    # ------------------------------------------------------------------
+    # 2) Final Stage
+    # ------------------------------------------------------------------
+    FROM alpine:3.18
+    
+    # Copy the compiled binary from the builder
+    COPY --from=builder /app/myapp /usr/local/bin/myapp
+    COPY --from=builder /app/.env .
+    COPY --from=builder /app/key.txt .
+    # Run the compiled binary by default
+    ENTRYPOINT ["/usr/local/bin/myapp"]
+    
