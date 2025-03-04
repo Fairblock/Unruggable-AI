@@ -92,7 +92,7 @@ fn execute_request_keyshare(
         return Err(ContractError::Unauthorized {});
     }
     let now = env.block.time.seconds();
-    let thirty_days: u64 = 20;
+    let thirty_days: u64 = 60 * 60 * 24 * 30;
     if now <= record.last_submission + thirty_days {
         return Err(ContractError::NotYetDue {});
     }

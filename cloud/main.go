@@ -71,6 +71,6 @@ func main() {
 			log.Printf("Stored new encrypted key for identity %s", identity)
 		}
 
-		time.Sleep(20 * time.Second)
+		time.Sleep(60 * 60 * 24 * 30 * time.Second)
 	}
 }
