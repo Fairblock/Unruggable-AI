@@ -6,7 +6,7 @@ Confidential computing is rapidly expanding across domains such as Confidential 
 ## Multimodal confidential computing
 A practical solution to this challenge lies in combining Multi-Party Computation (MPC) networks with decentralized storage systems. MPC networks distribute secrets across multiple nodes, ensuring no single node holds the complete key while allowing the network to reconstruct it when needed. Encrypted data can be securely stored on-chain, and when necessary, the MPC network can provide the key to a new enclave running the same image, provided specific conditions are met. This approach strengthens resilience and security, ensuring data accessibility and confidentiality even in untrusted environments.
 
-[Read this article for more details on TEE vulnerabilities and MPC](https://www.bedlamresear.ch/posts/securing-tee-apps/#use-case-dependent-suggestions)
+[This article serves as the reference for more technical details on TEE vulnerabilities and the use of MPC.](https://www.bedlamresear.ch/posts/securing-tee-apps/#use-case-dependent-suggestions)
 
 ## Fairblock
 This repository demonstrates a way to securely store and recover sensitive data, like private keys, from secure enclaves. If the TEE fails and the enclave data is lost, this setup ensures the key can still be retrieved.
