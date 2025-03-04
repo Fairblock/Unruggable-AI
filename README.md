@@ -8,13 +8,16 @@ For this purpose, the private identity encryption mechanism in FairyRing is used
 
 This repository consists of to main parts:
 
-1. A CosmWasm contract located at (`contract/src/contract.rs`) which manages the private-identity encryption and decryption. Every month, the encrypted private key is sent to this contract. If the key isn’t submitted for over a month, the contract assumes the TEE isn’t working and lets an authorized address request decryption to recover the key.
-2. The clound code (`cloud/main.go`) which will run inside the TEE server. It reads the private key from a file, encrypts it using the public key from FairyRing, and submits the encrypted key to the contract every month.
+1. **CosmWasm Contract**
+Located at `contract/src/contract.rs`, this contract manages private identity encryption and decryption. Every month, the encrypted private key is submitted to this contract. If no key is submitted for over a month, the contract assumes the TEE is no longer functioning and allows an authorized address to request decryption and recover the key.
+
+2. **Cloud Code**
+The cloud code (`cloud/main.go`) runs inside the TEE server. It reads the private key from a file, encrypts it using the public key from FairyRing, and submits the encrypted key to the contract every month.
 
 For this example, the private key is assumed to be in a file at `cloud/key.txt`. Although the key is set to be submitted monthly by default, it can be adjusted in both the contract and the cloud code.
 
 ## Local Testing
-1. Clone Required Repositories
+### Clone Required Repositories
    
 In order to test the example, clone FairyRing, FairyRingClient, and ShareGenerationClient outside this directory as follows:
 ```
@@ -27,11 +30,11 @@ git clone git@github.com:Fairblock/sharegenerationclient.git
 ```
 Make sure to switch to `contracts` branch of FairyRing.
 
-2. Set Up the Devnet
+### Set Up the Devnet and the Contract
    
 Run the `setup.sh` script to start the FairyRing devnet, deploy the contract, and initialize it.
 
-3. Run the Cloud Code Locally
+### Run the Cloud Code Locally
  
 Once the chain is running and the contract is deployed, run the cloud code as follows:
 ```
