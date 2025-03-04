@@ -24,8 +24,10 @@ git clone git@github.com:Fairblock/sharegenerationclient.git
 
 ```
 Make sure to switch to `contracts` branch of FairyRing.
+
 2. Set Up the Devnet
 Run the `setup.sh` script to start the FairyRing devnet, deploy the contract, and initialize it.
+
 3. Run the Cloud Code Locally
 Once the chain is running and the contract is deployed, run the cloud code as follows:
 ```
