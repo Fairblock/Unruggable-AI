@@ -1,12 +1,28 @@
-# Phala Network Key Recovery
+# Unstoppable and Unruggable AI Agents
 
-This repository demonstrates a way to securely store and recover sensitive data, like private keys, from enclaves in untrusted environments. If the TEE fails and the enclave data is lost, this setup ensures the key can still be retrieved.
+## TEE memory is transient
+Confidential computing is rapidly expanding across domains such as Confidential AI, DeFi, and AI Agents. However, enclave memory is transient, meaning its contents, including cryptographic keys, are lost when the enclave shuts down. Without a secure mechanism to persist this information, critical data may become permanently inaccessible, putting funds and operations at risk.
 
-For this purpose, the private identity encryption mechanism in FairyRing is used which allows for storing encrypted data and private decryption of it once a certain condition is met. The TEE regularly encrypts and submits the private key to a contract. If the TEE stops working and submissions stop, the contract detects this and allows an authorized address to request decryption and recover the key. 
+## Multimodal Confidential Computing
+A practical solution to this challenge lies in combining Multi-Party Computation (MPC) networks with decentralized storage systems. MPC networks distribute secrets across multiple nodes, ensuring no single node holds the complete key while allowing the network to reconstruct it when needed. Encrypted data can be securely stored on-chain, and when necessary, the MPC network can provide the key to a new enclave running the same image, provided specific conditions are met. This approach strengthens resilience and security, ensuring data accessibility and confidentiality even in untrusted environments.
+
+[Read this article for more details on TEE vulnerabilities and MPC](https://www.bedlamresear.ch/posts/securing-tee-apps/#use-case-dependent-suggestions)
+
+## Fairblock MPC
+This repository demonstrates a way to securely store and recover sensitive data, like private keys, from secure enclaves. If the TEE fails and the enclave data is lost, this setup ensures the key can still be retrieved.
+
+Fairblock's MPC mechanism within FairyRing enables secure storage of encrypted data and private decryption once specific conditions are met. The Trusted Execution Environment (TEE) periodically encrypts and submits the private key to a smart contract. If the TEE ceases operation and submissions stop, the contract detects this and grants an authorized address the ability to request decryption and recover the key.
+[Fairblock Private Decryption](https://docs.fairblock.network/docs/build/fairyring/fairyring_private_decryption)
+
+
+## Phala Network
+While this approach is compatible with any TEE (including local TEEs), we are thrilled to collaborate with Phala Network, leveraging the power of an AI agent within Phala Network's cutting-edge cloud infrastructure.
+[Phala Network Cloud](cloud.phala.network)
+
 
 ## Overview
 
-This repository consists of to main parts:
+This repository consists of two main parts:
 
 1. **CosmWasm Contract**
 Located at `contract/src/contract.rs`, this contract manages private identity encryption and decryption. Every month, the encrypted private key is submitted to this contract. If no key is submitted for over a month, the contract assumes the TEE is no longer functioning and allows an authorized address to request decryption and recover the key.
