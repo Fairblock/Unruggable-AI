@@ -4,7 +4,7 @@ CHAIN_ID=fairyring_devnet
 cd ../fairyring
 make devnet-up
 
-cd ../phala-network-key-recovery/contract
+cd ../Unruggable-AI/contract
 
 RUSTFLAGS='-C link-arg=-s -C target-feature=+bulk-memory' \
 cargo build --release --target wasm32-unknown-unknown
