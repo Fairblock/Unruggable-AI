@@ -15,7 +15,7 @@ Fairblock's dynamic MPC mechanism within FairyRing enables secure storage of enc
 [Fairblock Private Decryption](https://docs.fairblock.network/docs/build/fairyring/fairyring_private_decryption)
 
 
-## Phala Network
+## Phala
 While this approach is compatible with any TEE (including local TEEs), we are thrilled to collaborate with Phala Network, leveraging the power of an AI agent within Phala Network's cutting-edge cloud infrastructure.
 [Phala Network Cloud](cloud.phala.network)
 
