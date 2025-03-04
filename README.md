@@ -19,8 +19,20 @@ Fairblock's dynamic MPC mechanism within FairyRing enables secure storage of enc
 While this approach is compatible with any TEE (including local TEEs), we are thrilled to collaborate with Phala Network, leveraging the power of an AI agent within Phala Network's cutting-edge cloud infrastructure.
 [Phala Network Cloud](cloud.phala.network)
 
+# Other Applications of MPC+TEE  
 
-## Overview
+While this work focuses on enabling unstoppable and unruggable confidential computing through MPC and TEEs, this multimodal approach can also be applied to other critical security scenarios, such as:  
+
+- **Securing TEE Root Keys with MPC**  
+  Using MPC to store the private root key of TEEs can help mitigate attacks similar to [recent incidents](https://www.theregister.com/2024/08/27/intel_root_key_xeons/).  
+
+- **Enhancing Security by Combining TEE and MPC**  
+  Integrating TEE and MPC ensures that neither depends solely on a single TEE’s hardware security nor on the honest majority assumption of MPCs.  
+
+For more details, check out [this thread and repo](https://x.com/0xfairblock/status/1867585359896556026) on Fairblock’s work.
+
+
+## Technical Overview
 
 This repository consists of two main parts:
 
