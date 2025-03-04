@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 	"strings"
 	"time"
-wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	clienttx "github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
@@ -27,9 +27,6 @@ wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	"github.com/skip-mev/block-sdk/v2/testutils"
 )
 
-// -----------------------------------------------------------------------------
-// COSMOS CLIENT
-// -----------------------------------------------------------------------------
 
 const (
 	defaultGasAdjustment = 3
@@ -98,7 +95,7 @@ func LoadAddressesFromJSON(filePath string) ([]string, error) {
 
 func NewCosmosClient(endpoint, privKeyHex, chainID string) (*CosmosClient, error) {
 	grpcConn, err := grpc.Dial(endpoint, grpc.WithInsecure(), grpc.WithDefaultCallOptions(
-		grpc.MaxCallRecvMsgSize(50*1024*1024), // 50 MB
+		grpc.MaxCallRecvMsgSize(50*1024*1024), 
 		grpc.MaxCallSendMsgSize(50*1024*1024),
 	))
 	if err != nil {
@@ -281,34 +278,32 @@ var newGasLimit uint64 = defaultGasLimit
 
 
 
-// QueryContractSmart queries a CosmWasm contract for smart query results.
-//   contractAddr: the bech32 contract address
-//   msg:         the JSON-encoded query message (e.g. {"get_identity":{...}})
+
 func (c *CosmosClient) QueryContractSmart(
     ctx context.Context,
     contractAddr string,
     msg []byte,
 ) ([]byte, error) {
-    // Make sure c.grpcConn is your *grpc.ClientConn to a full-node’s gRPC endpoint
+   
     if c.GrpcConn == nil {
         return nil, fmt.Errorf("grpcConn not initialized")
     }
 
-    // Create a new Wasm QueryClient from the wasmd protos
+   
     queryClient := wasmtypes.NewQueryClient(c.GrpcConn)
 
-    // Build the request
+   
     req := &wasmtypes.QuerySmartContractStateRequest{
         Address:   contractAddr,
         QueryData: msg,
     }
 
-    // Perform the query
+ 
     resp, err := queryClient.SmartContractState(ctx, req)
     if err != nil {
         return nil, fmt.Errorf("QuerySmartContractState error: %w", err)
     }
 
-    // resp.Data is the raw JSON data returned by the contract
+  
     return resp.Data, nil
 }
