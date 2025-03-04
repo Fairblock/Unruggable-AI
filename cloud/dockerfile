@@ -10,15 +10,15 @@
   
     COPY . .
     
-    RUN go build -o /app/myapp main.go
+    RUN go build -o /app/phala main.go
     
 
     FROM alpine:3.18
     
 
-    COPY --from=builder /app/myapp /usr/local/bin/myapp
+    COPY --from=builder /app/phala /usr/local/bin/phala
     COPY --from=builder /app/.env .
     COPY --from=builder /app/key.txt .
 
-    ENTRYPOINT ["/usr/local/bin/myapp"]
+    ENTRYPOINT ["/usr/local/bin/phala"]
     

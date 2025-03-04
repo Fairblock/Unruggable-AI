@@ -13,7 +13,7 @@ import (
 	"cloud_encryption/broadcast"
 )
 
-// DoEncryptionAndSubmit encrypts the plaintext from keyFile and submits the encrypted data.
+
 func DoEncryptionAndSubmit(client *broadcast.CosmosClient, identity, contractAddress, keyFile, newPubKey string) error {
 	plainBytes, err := ioutil.ReadFile(keyFile)
 	if err != nil {

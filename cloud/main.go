@@ -17,9 +17,9 @@ func main() {
 	}
 
 	// Read configuration from .env.
-	rpcEndpoint := utils.GetEnv("COSMOS_GRPC_ENDPOINT")
-	privateKeyHex := utils.GetEnv("COSMOS_PRIVATE_KEY_HEX")
-	chainID := utils.GetEnv("COSMOS_CHAIN_ID")
+	rpcEndpoint := utils.GetEnv("FAIRYRING_GRPC_ENDPOINT")
+	privateKeyHex := utils.GetEnv("FAIRYRING_PRIVATE_KEY_HEX")
+	chainID := utils.GetEnv("FAIRYRING_CHAIN_ID")
 	contractAddress := utils.GetEnv("CONTRACT_ADDRESS")
 	authorizedAddr := utils.GetEnv("AUTHORIZED_ADDRESS")
 	keyFile := utils.GetEnv("PLAINTEXT_FILE")

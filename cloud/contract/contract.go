@@ -126,9 +126,9 @@ func UpdateContractPubKey(client *broadcast.CosmosClient, contractAddress, newPu
 	return nil
 }
 
-// FetchPublicKey retrieves the queued public key from the keyshare service.
+
 func FetchPublicKey() (string, error) {
-	baseURL := utils.GetEnv("KEYSHARE_BASE_URL")
+	baseURL := utils.GetEnv("FAIRYRING_REST_URL")
 	url := baseURL + "/fairyring/keyshare/pubkey"
 
 	resp, err := http.Get(url)
