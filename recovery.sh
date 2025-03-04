@@ -11,7 +11,7 @@ fairyringd tx wasm execute $CONTRACT_ADDRESS '{"request_private_keyshare": {"ide
     --amount 400000ufairy --from wallet1 --gas 9000000 --chain-id fairyring_devnet -y
 
 
-echo "⏳ Waiting for encrypted keyshare value to be available..."
+echo "Waiting for encrypted keyshare value to be available..."
 for i in {1..10}; do
    JSON_OUTPUT=$(fairyringd q wasm contract-state smart "$CONTRACT_ADDRESS" '{"get_all_identity": {}}' --chain-id fairyring_devnet --node http://localhost:26657 | yq eval -o=json -N)
 
@@ -23,17 +23,17 @@ for i in {1..10}; do
     ENCRYPTED_DATA=$(echo "$JSON_OUTPUT" |yq eval -o=json |  jq -r '.data.records | last | .encrypted_data')
 
     if [[ -n "$ENCRYPTED_KEYSHARE_VALUE" && "$ENCRYPTED_KEYSHARE_VALUE" != "null" ]]; then
-        echo "✅ Retrieved ENCRYPTED_KEYSHARE_VALUE: $ENCRYPTED_KEYSHARE_VALUE"
+        echo "Retrieved ENCRYPTED_KEYSHARE_VALUE: $ENCRYPTED_KEYSHARE_VALUE"
         break
     fi
 
-    echo "🔄 Waiting for keyshare availability... ($i/10)"
+    echo "Waiting for keyshare availability... ($i/10)"
     sleep 3
 done
 
 # If still empty after retries, exit
 if [[ -z "$ENCRYPTED_KEYSHARE_VALUE" || "$ENCRYPTED_KEYSHARE_VALUE" == "null" ]]; then
-    echo "❌ Error: Could not retrieve encrypted keyshare value. Exiting..."
+    echo "Error: Could not retrieve encrypted keyshare value. Exiting..."
     exit 1
 fi
 
@@ -42,13 +42,14 @@ echo "Aggregating keyshares to obtain decryption key..."
 DECRYPTION_KEY=$(fairyringd aggregate-keyshares "[ { \"encrypted_keyshare_value\": \"$ENCRYPTED_KEYSHARE_VALUE\", \"encrypted_keyshare_index\": 1 } ]" '""' $ACC_ADDR_W1 $PRIV_KEY_HEX_W1)
 
 if [[ -z "$DECRYPTION_KEY" || "$DECRYPTION_KEY" == "null" ]]; then
-    echo "❌ Error: Could not retrieve decryption key. Exiting..."
+    echo "Error: Could not retrieve decryption key. Exiting..."
     exit 1
 fi
-echo "✅ Retrieved DECRYPTION_KEY: $DECRYPTION_KEY"
+echo "Retrieved DECRYPTION_KEY: $DECRYPTION_KEY"
 
 FAIRYRING_PUBKEY=$(fairyringd query pep show-active-pub-key -o json | jq -r '.active_pubkey.public_key')
+
 echo "Decrypting final transaction data..."
 DECRYPTED_MESSAGE=$(fairyringd query pep decrypt-data $FAIRYRING_PUBKEY $DECRYPTION_KEY $ENCRYPTED_DATA -o json | jq -r '.decrypted_data')
 
-echo "🔓 Decrypted Message: $DECRYPTED_MESSAGE"
+echo "Decrypted Message: $DECRYPTED_MESSAGE"

@@ -42,7 +42,7 @@ This code needs configuration details like the chain endpoints, contract address
 
 At this point, the cloud code should automatically submit the encrypted key to the contract at the defined intervals.
 
-To simulate a TEE failure and test the recovery process, first, stop the cloud code. Once the required time has passed since the last key submission, run the `recovery.sh` script. This will request a private decryption, retrieve the decryption key, and perform the decryption to recover the private key.
+To simulate a TEE failure and test the recovery process, first, stop the cloud code. Once the required time has passed since the last key submission, run the `recovery.sh` script. This will request a private decryption, retrieve the decryption key, and perform the decryption to recover the private key. 
 
 ## Cloud Testing
 
