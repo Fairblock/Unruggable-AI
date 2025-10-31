@@ -1,5 +1,6 @@
 # Unstoppable and Unruggable AI Agents
 
+Read this blog and tutorial: https://phala.com/posts/phala-x-fairblock-a-blueprint-for-unruggable-ai-with-an-mpctee-hybrid-architecture
 ## TEE memory is transient
 Confidential computing is rapidly expanding across domains such as Confidential AI, DeFi, and AI Agents. However, enclave memory is transient, meaning its contents, including cryptographic keys, are lost when the enclave shuts down. Without a secure mechanism to persist this information, critical data may become permanently inaccessible, putting funds and operations at risk.
 
