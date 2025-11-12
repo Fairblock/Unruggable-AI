@@ -18,7 +18,7 @@ Fairblock's dynamic MPC mechanism within FairyRing enables secure storage of enc
 
 ## Phala
 While this approach is compatible with any TEE (including local TEEs), we are thrilled to collaborate with Phala Network, leveraging the power of an AI agent within Phala Network's cutting-edge cloud infrastructure.
-[Phala Network Cloud](cloud.phala.network)
+[Phala Network Cloud](https://cloud.phala.network/)
 
 # Other Applications of MPC+TEE  
 
