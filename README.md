@@ -78,5 +78,5 @@ To simulate a TEE failure and test the recovery process, first, stop the cloud c
 
 ## Cloud Testing
 
-In order to test the code with Phala Cloud, use the provided dockerfile located in `cloud/dockerfile` to generate the corresponsing image for the cloud code. Before building the Docker image, make sure that the config values in the `.env` file are correctly set. The rest of the process will be similar to local testing.
+In order to test the code with Phala Cloud, use the provided dockerfile located in `cloud/dockerfile` to generate the corresponding image for the cloud code. Before building the Docker image, make sure that the config values in the `.env` file are correctly set. The rest of the process will be similar to local testing.
 In a real-world scenario, the actual private key should be saved in cloud/key.txt so the cloud code can access it.
